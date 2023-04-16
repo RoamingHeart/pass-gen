@@ -5,17 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Password Generator</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
   </head>
+
   <body>
     <div class="wrapper">
-      <header>
-        <h1>Password Generator</h1>
-      </header>
-      <div class="card">
+        <h2>Password Generator</h2>
+        <div class="result-container">
+          <!-- output of the code -->
+          <input type="text" id="result" />
+          <!-- copy the result -->
+          <button class="copy-result" id="copy">Copy</button>
+        </div>
+
+        <div class="requirements">
+          <!-- change length of the code -->
+          <div class="req-group">
+            <label>Password Length (8-128)</label>
+            <input type="range" id="length" min="8" max="128" step="1" />
+            <span id="length-result">10</span>
+          </div>
+
+          <!-- toggle numbers -->
+          <div class="req-group">
+            <label>Include Numbers</label>
+            <input type="checkbox" id="numbers" checked />
+          </div>
+
+          <!-- toggle symbols -->
+          <div class="req-group">
+            <label>Include Symbols</label>
+            <input type="checkbox" id="symbols" checked />
+          </div>
+
+          <!-- toggle lowercase letters -->
+          <div class="req-group">
+            <label>Include Lowercase Letters</label>
+            <input type="checkbox" id="lower" checked />
+          </div>
+
+          <!-- toggle uppercase letters -->
+          <div class="req-group">
+            <label>Include Uppercase Letters</label>
+            <input type="checkbox" id="upper" checked />
+          </div>
+        </div>
+
+        <button class="generate-btn" id="generate">Generate Password</button>
+
+      <!-- <div class="card">
         <div class="card-header">
           <h2>Generate a Password</h2>
         </div>
+
         <div class="card-body">
           <textarea
             readonly
@@ -24,11 +69,13 @@
             aria-label="Generated Password"
           ></textarea>
         </div>
+
         <div class="card-footer">
           <button id="generate" class="btn">Generate Password</button>
         </div>
-      </div>
+
+      </div> -->
     </div>
-    <script src="script.js"></script>
+    <script src="./assets/script.js"></script>
   </body>
 </html>
