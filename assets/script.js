@@ -1,112 +1,143 @@
 // declared variables
-var generateBtn = document.querySelector("#generate");
-var copyPass = document.querySelector("#copy");
-var result = document.querySelector("#result");
-var passLength = document.querySelector("#length");
-var passLengthResult = document.querySelector("#length-result");
-var includeNumbers = document.querySelector("#numbers");
-var includeSymbols = document.querySelector("#symbols");
-var includeUpper = document.querySelector("#upper");
-var includeLower = document.querySelector("#lower");
+//connects to the generate button
+var genBtn = document.querySelector("#gene");
+//connects to the copy button
+var copyP = document.querySelector("#copy");
+//connects to the place where the result of the code gets output
+var output = document.querySelector("#output");
+//connects to the input range of deciding the length of the password
+var passLeng = document.querySelector("#stretch");
+//connects to the part next to the slider, shows t number is curently set 
+var passLengRes = document.querySelector("#strech-result");
+//connects to where the numbers checkbox is set
+var addNums = document.querySelector("#num");
+//connects to where the symbols are checked
+var addSym = document.querySelector("#symb");
+//connects to the option for upper case letters
+var addCap = document.querySelector("#upp");
+//links to option for lower case letters
+var addLow = document.querySelector("#low");
 
-//password range
-passLength.addEventListener("change", (event) => {
-  passLengthResult.innerText = event.target.value;
+//password range, lets the user maove the slider to change to desired amount of characters in their password
+passLeng.addEventListener("change", (event) => {
+  passLengRes.innerText = event.target.value;
 });
 
 //randomizing code
-function getRandomLower() {
-  const lower = "abcdefghijklmnopqrstuvwxyz";
-  return lower[Math.floor(Math.random() * lower.length)];
+//generated the lower case letters
+function getRanLow() {
+  const low = "abcdefghijklmnopqrstuvwxyz";
+  //randomizes from the variable above
+  return low[Math.floor(Math.random() * low.length)];
+};
+//generates the upper case lettes
+function getRanUp() {
+  const upp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  //does the same as getRandomLower but the variable string has upper case letters instead of lower case
+  return upp[Math.floor(Math.random() * upp.length)];
 };
 
-function getRandomUpper() {
-  const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  return upper[Math.floor(Math.random() * upper.length)];
+//generates numbers into the result
+function getRanNum() {
+  const num = '123456789';
+  //randomizes output with characters from inside the string
+  return num[Math.floor(Math.random() * num.length)];
+};
+//generates symbols into the password is desired
+function getRanSym() {
+  const symb = "!@#$%^&*(){}[]=<>/,.";
+  //randomizes symbols into the password from inside the string from above
+  return symb[Math.floor(Math.random() * symb.length)];
 };
 
-function getRandomNumber() {
-  const numbers = "1234567890";
-  return numbers[Math.floor(Math.random() * numbers.length)];
-};
-
-function getRandomSymbol() {
-  const symbols = "!@#$%^&*(){}[]=<>/,.";
-  return symbols[Math.floor(Math.random() * symbols.length)];
-};
-
-//password requirments
-generateBtn.addEventListener("click", () => {
-  const length = passLength.value;
-  const numbers = includeNumbers.checked;
-  const symbols = includeSymbols.checked;
-  const lower = includeLower.checked;
-  const upper = includeUpper.checked;
-  result.value = generatePassword(numbers, symbols, lower, upper, length);
+//password requirments that the user chooses
+genBtn.addEventListener("click", () => {
+  //the desired length of the password
+  const length = passLeng.value;
+  //if the numbers option is checked
+  const num = addNums.checked;
+  //if the symbols options is checked
+  const symb = addSym.checked;
+  //if the users checked for lower case letters
+  const low = addLow.checked;
+  //if the user checked the option for uppercase letters
+  const upp = addCap.checked;
+  //displays the result of all the conditions set
+  output.value = genPass(num, symb, low, upp, length);
 });
 
-//generate the pass
-function generatePassword(numbers, symbols, lower, upper, length) {
-  let generatePassword = "";
-  let variationCount = [numbers, symbols, lower, upper].length;
+//generate the password
+function genPass(num, symb, low, upp, length) {
+  let genPass = "";
+  let VariNum = [num, symb, low, upp].length;
 
   //conditions
-  for (let i = 0; i < length; i += variationCount) {
-    if (numbers) {
-      generatePassword += getRandomNumber();
+  for (let i = 0; i < length; i += VariNum) {
+    if (num) {
+      //if numbers are set, places numbers into the password
+      genPass += getRanNum();
     }
-    if (symbols) {
-      generatePassword += getRandomSymbol();
+    if (symb) {
+      //if symbols are checked, add symbols into the password
+      genPass += getRanSym();
     }
-    if (upper) {
-      generatePassword += getRandomUpper();
+    if (upp) {
+      //if uppercase letters is checked, add uppercase letters into the password
+      genPass += getRanUp();
     }
-    if (lower) {
-      generatePassword += getRandomLower();
+    if (low) {
+      //if lowercase letters are selected, add lower case letters into the password
+      genPass += getRanLow();
     }
-    // generatePassword += getRandomLower();
+    //if none of the numbers, symbols, or two letters are selected, nothing gets outputted
   }
   
   //cutting the result to desired length
-  const finalPassword = generatePassword.slice(0, length);
+  const finPass = genPass.slice(0, length);
   //display the wanted content
-  return finalPassword;
+  return finPass;
 }
 
-//copy button
-copyPass.addEventListener("click", () => {
-  navigator.clipboard.writeText(result.value)
+//copy button using clipboard API
+copyP.addEventListener("click", () => {
+  navigator.clipboard.writeText(output.value)
 });
 
-function copy(text) {
-  const input = document.createElement("input");
-  input.setAttribute("value", text);
-  document.body.appendChild(input);
-  input.select();
-  let copiedResult = navigator.clipboard.writeText("copy");
-  document.body.removeChild(input);
-  const alert = document.createElement("div");
-  alert.classList.add("alert");
-  alert.textContent = "Copied!";
-  document.body.appendChild(alert);
-  setTimeout(() => {
-    document.querySelector(".alert").style.display = "none";
-    document.body.removeChild(alert);
-  }, 1000);
-  return result;
-}
 
-//default length of pass to 20
+//realized that I didn't need this if I use clipboard API
+// function copy(text) {
+//   const input = document.createElement("input");
+//   input.setAttribute("value", text);
+//   document.body.appendChild(input);
+//   input.select();
+//   let copiedResult = navigator.clipboard.writeText("copy");
+//   document.body.removeChild(input);
+//   const alert = document.createElement("div");
+//   alert.classList.add("alert");
+//   alert.textContent = "Copied!";
+//   document.body.appendChild(alert);
+//   setTimeout(() => {
+//     document.querySelector(".alert").style.display = "none";
+//     document.body.removeChild(alert);
+//   }, 1000);
+//   return result;
+// }
+
+
+//default length of pass to 15
+//adds some default settings to the password for when the user first loads into the page 
 document.addEventListener("DOMContentLoaded", () => {
-  passLength.value = 20;
-  passLengthResult.innerText = "20";
+  //sets default length to 15 characters
+  passLeng.value = 15;
+  passLengRes.innerText = "15";
 
-  let onLoadLength = passLength.value;
-  let onLoadNumbers = includeNumbers.checked;
-  let onLoadSymbols = includeSymbols.checked;
-  let onLoadUpper = includeUpper.checked;
-  let onLoadLower = includeLower.checked;
-  result.value = generatePassword(onLoadLength, onLoadNumbers, onLoadSymbols, onLoadLower, onLoadUpper);
+  //sets the starting conditions
+  let startLeng = passLeng.value;
+  let startNum = addNums.checked;
+  let startSym = addSym.checked;
+  let startCap = addCap.checked;
+  let startLow = addLow.checked;
+  output.value = genPass(startLeng, startNum, startSym, startCap, startLow);
 });
 
 // function generatePassword() {

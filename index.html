@@ -12,49 +12,56 @@
   </head>
 
   <body>
-    <div class="wrapper">
+    <main class="wrapper">
         <h2>Password Generator</h2>
-        <div class="result-container">
+        <!-- upper part of the content, title and output area with copy button -->
+        <section class="main-output">
           <!-- output of the code -->
-          <input type="text" id="result" />
+          <input type="text" id="output" />
           <!-- copy the result -->
-          <button class="copy-result" id="copy">Copy</button>
-        </div>
+          <button class="copy-output" id="copy">Copy</button>
+        </section>
 
-        <div class="requirements">
-          <!-- change length of the code -->
-          <div class="req-group">
+        <article class="requirements">
+          <!-- change length of the password -->
+          <section class="req-group">
             <label>Password Length (8-128)</label>
-            <input type="range" id="length" min="8" max="128" step="1" />
-            <span id="length-result">10</span>
-          </div>
+            <!-- makes it so that theres a range so the user can have their desired amount of characters  -->
+            <input type="range" id="stretch" min="8" max="128" step="1" />
+            <span id="strech-result">10</span>
+          </section>
 
           <!-- toggle numbers -->
-          <div class="req-group">
+          <section class="req-group">
             <label>Include Numbers</label>
-            <input type="checkbox" id="numbers" checked />
-          </div>
+            <!-- have there be a checkbox for the user to check if they want numbers in their password -->
+            <input type="checkbox" id="num" checked />
+          </section>
 
           <!-- toggle symbols -->
-          <div class="req-group">
+          <section class="req-group">
             <label>Include Symbols</label>
-            <input type="checkbox" id="symbols" checked />
-          </div>
+            <!-- have there be a checkbox for the user to check if they want symbols in their password -->
+            <input type="checkbox" id="symb" checked />
+          </section>
 
           <!-- toggle lowercase letters -->
-          <div class="req-group">
+          <section class="req-group">
             <label>Include Lowercase Letters</label>
-            <input type="checkbox" id="lower" checked />
-          </div>
+            <!-- have there be a checkbox for the user to check if they want uppercase letters in their password -->
+            <input type="checkbox" id="low" checked />
+          </section>
 
           <!-- toggle uppercase letters -->
-          <div class="req-group">
+          <section class="req-group">
             <label>Include Uppercase Letters</label>
-            <input type="checkbox" id="upper" checked />
-          </div>
-        </div>
+            <!-- have there be a checkbox for the user to check if they want lowercase letters in their password -->
+            <input type="checkbox" id="upp" checked />
+          </section>
+        </article>
 
-        <button class="generate-btn" id="generate">Generate Password</button>
+        <!-- a button to generate the desired password -->
+        <button class="gen-btn" id="gene">Generate Password</button>
 
       <!-- <div class="card">
         <div class="card-header">
@@ -75,7 +82,7 @@
         </div>
 
       </div> -->
-    </div>
+    </main>
     <script src="./assets/script.js"></script>
   </body>
 </html>

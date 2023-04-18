@@ -157,18 +157,20 @@ body {
   background: white;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
-.result-container {
+.main-output {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
-#result {
+
+/* makes it so the result bar is the fits across the container and has the copy btn inside */
+#output {
   flex: auto;
   font-family: Monaco, mono;
   background: #f4f4f4;
 }
-.copy-result {
+.copy-output {
   background-image: var(--gradient);
   border: none;
   padding: 14px 18px;
@@ -182,7 +184,7 @@ body {
   z-index: 50;
   font-size: 0.8rem;
 }
-.copy-result:hover {
+.copy-output:hover {
   background: var(--blue);
 }
 input[type="text"] {
@@ -215,7 +217,7 @@ input[type="checkbox"] {
   align-items: center;
   justify-content: space-between;
 }
-.generate-btn {
+.gen-btn {
   background-image: var(--gradient);
   padding: 14px 24px;
   border: none;
@@ -227,7 +229,7 @@ input[type="checkbox"] {
   cursor: pointer;
   font-size: 1.25rem;
 }
-.generate-btn:hover,
+.gen-btn:hover,
 .copy-btn:hover {
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   background: var(--blue);
